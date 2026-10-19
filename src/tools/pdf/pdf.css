@@ -1,0 +1,68 @@
+/*
+ * PDF toolbox: toolbar, page grid, save panel, preview. Shared primitives come from src/shared.
+ * Everything is nested under the tool's wrapper so nothing leaks into the shell or other tools
+ * (tests/tool-css-scope.test.ts enforces this).
+ */
+[data-tool="pdf"] {
+  /* 02 arrange: toolbar */
+  .tools { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 8px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 10px); z-index: 5; }
+  .tools .sep { width: 1px; align-self: stretch; background: var(--line); margin: 4px; }
+  .tools .sp { flex: 1; }
+  .count { font: 400 12px var(--font-mono); color: var(--muted); min-height: 18px; }
+  .keys { font: 400 12px/1.6 var(--font-mono); color: var(--muted); margin: 0; }
+  .keys kbd { font: 500 11px var(--font-mono); border: 1px solid var(--line-2); border-bottom-width: 2px; border-radius: 5px; padding: 1px 5px; background: var(--surface); color: var(--ink-2); }
+
+  /* page grid */
+  .grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr)); gap: 14px; }
+  .tile { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 8px; display: grid; gap: 8px; cursor: pointer; box-shadow: var(--shadow); transition: box-shadow 0.25s var(--ease), border-color 0.2s var(--ease); min-width: 0; }
+  .tile:hover { box-shadow: var(--shadow-lg); border-color: var(--line-2); }
+  .tile:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  .tile.sel { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink), var(--shadow-lg); }
+  .tile.dragging { opacity: 0.35; }
+  .tile.drop-before::before, .tile.drop-after::after { content: ""; position: absolute; top: -2px; bottom: -2px; width: 3px; background: var(--ink); border-radius: 2px; }
+  .tile.drop-before::before { left: -9px; }
+  .tile.drop-after::after { right: -9px; }
+
+  /*
+   * One thumbnail per page, rotated with CSS. A sideways page swaps its limits
+   * (container units) so it still fits the 3:4 frame after turning.
+   */
+  .thumb { position: relative; aspect-ratio: 3 / 4; background: var(--well); border-radius: 9px; overflow: hidden; container-type: size; }
+  .thumb img { position: absolute; left: 50%; top: 50%; max-width: 92%; max-height: 92%; transform: translate(-50%, -50%); border-radius: 2px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05); -webkit-user-drag: none; user-select: none; }
+  .thumb img[data-rot="90"] { max-width: 92cqh; max-height: 92cqw; transform: translate(-50%, -50%) rotate(90deg); }
+  .thumb img[data-rot="180"] { transform: translate(-50%, -50%) rotate(180deg); }
+  .thumb img[data-rot="270"] { max-width: 92cqh; max-height: 92cqw; transform: translate(-50%, -50%) rotate(270deg); }
+  .thumb .ph { position: absolute; inset: 20% 22%; background: var(--line); border-radius: 4px; animation: pdf-pulse 1.2s ease-in-out infinite alternate; }
+  .thumb .no-preview { position: absolute; inset: 0; display: grid; place-items: center; font: 400 11px var(--font-mono); color: var(--muted); }
+
+  .check, .zoom { position: absolute; top: 14px; width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center; padding: 0; z-index: 1; box-shadow: var(--shadow); }
+  .check { left: 14px; border: 1.5px solid var(--line-2); background: var(--surface); color: var(--on-primary); }
+  .tile.sel .check { background: var(--primary); border-color: var(--primary); }
+  .zoom { right: 14px; border: 1px solid var(--line-2); background: var(--surface); color: var(--ink-2); opacity: 0; transition: opacity 0.2s var(--ease); }
+  .tile:hover .zoom, .tile:focus-within .zoom, .zoom:focus-visible { opacity: 1; }
+  @media (hover: none) { .zoom { opacity: 1; } }
+
+  .meta { display: flex; align-items: baseline; gap: 8px; min-width: 0; padding: 0 2px; }
+  .meta b { font: 500 12px var(--font-mono); color: var(--ink); }
+  .meta .src { font: 400 11px var(--font-mono); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+  .acts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; border-top: 1px solid var(--line); padding-top: 6px; }
+  .acts button { border: 0; background: transparent; color: var(--ink-2); border-radius: 7px; height: 32px; padding: 0; display: grid; place-items: center; }
+  .acts button:hover:not(:disabled) { background: var(--well); color: var(--ink); }
+  .acts button:disabled { opacity: 0.3; cursor: not-allowed; }
+  .acts button[data-act="del"]:hover { color: var(--danger); }
+
+  .empty { border: 1.5px dashed var(--line-2); border-radius: 14px; padding: 44px 20px; text-align: center; color: var(--muted); background: var(--surface); display: grid; justify-items: center; gap: 6px; }
+  .empty b { font: 400 26px var(--font-serif); color: var(--ink); }
+  .empty .btn { margin-top: 12px; }
+
+  /* 03 save */
+  .range-info { font: 400 12px var(--font-mono); min-height: 18px; }
+  .range-info.err { color: var(--danger); }
+
+  /* preview */
+  .viewer-page canvas { display: block; background: #fff; border-radius: 3px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2), 0 18px 40px -12px rgba(0, 0, 0, 0.35); max-width: none; }
+  .viewer-page { color: var(--muted); font: 400 13px var(--font-mono); }
+}
+
+/* Animation names are global, so they carry the tool's id. */
+@keyframes pdf-pulse { from { opacity: 0.35; } to { opacity: 1; } }

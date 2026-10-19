@@ -1,0 +1,6 @@
+/* Hidden until the reveal starts; Reveal.tsx always makes the text visible, even when it skips the animation. */
+[data-reveal] { visibility: hidden; }
+[data-reveal] > * { margin-bottom: -0.18em; }
+[data-reveal] .word-mask, [data-reveal] .char-mask { vertical-align: top; }
+[data-reveal] .line-mask, [data-reveal] .word-mask, [data-reveal] .char-mask { overflow: clip; overflow-clip-margin: 0.06em; }
+[data-reveal] .line-mask > *, [data-reveal] .word-mask > *, [data-reveal] .char-mask > * { padding-bottom: 0.18em; will-change: transform; }

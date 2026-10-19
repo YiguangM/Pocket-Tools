@@ -1,0 +1,40 @@
+{
+  "name": "pocket-tools",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Small, private, in-browser utilities. Files never leave the tab.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "shortcut": "powershell -NoProfile -ExecutionPolicy Bypass -File launcher/create-shortcut.ps1"
+  },
+  "dependencies": {
+    "@fontsource/geist": "^5.3.0",
+    "@fontsource/geist-mono": "^5.3.0",
+    "@fontsource/instrument-serif": "^5.3.0",
+    "fflate": "^0.8.3",
+    "gsap": "^3.15.0",
+    "onnxruntime-web": "^1.30.0",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^6.4.299",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router": "^8.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "oxc-parser": "^0.154.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4",
+    "vite-plugin-pwa": "^2.0.0",
+    "vitest": "^5.0.4"
+  }
+}

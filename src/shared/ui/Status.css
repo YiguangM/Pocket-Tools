@@ -1,0 +1,2 @@
+.status { font: 400 12px var(--font-mono); color: var(--ink-2); min-height: 18px; }
+.status.err { color: var(--danger); }

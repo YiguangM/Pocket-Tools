@@ -1,0 +1,41 @@
+/* Image converter. Shared primitives come from src/shared; everything here stays inside the tool. */
+[data-tool="images"] {
+  .summary { display: flex; align-items: center; gap: 12px; min-height: 34px; }
+  .count { font: 400 12px var(--font-mono); color: var(--muted); flex: 1; }
+
+  .cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+  .item { position: relative; display: grid; padding: 8px; gap: 10px; min-width: 0; }
+  .item .thumb { display: block; border: 0; padding: 0; aspect-ratio: 4 / 3; border-radius: 9px; overflow: hidden; background: var(--well); cursor: zoom-in; }
+  .item .thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .item .info { display: grid; gap: 4px; padding: 0 4px 4px; min-width: 0; }
+  .item .info b { font-weight: 500; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .item .info span { font: 400 11px var(--font-mono); color: var(--muted); }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+  .tags em { font: 500 10px/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; font-style: normal; border: 1px solid var(--line-2); color: var(--ink-2); padding: 4px 6px; border-radius: 999px; }
+  .tags em.warn { border-color: var(--danger); color: var(--danger); }
+  .tags em.clean { color: var(--muted); }
+  .item .remove { position: absolute; top: 14px; right: 14px; width: 28px; height: 28px; border-radius: 8px; border: 1px solid var(--line-2); background: var(--surface); color: var(--ink-2); display: grid; place-items: center; padding: 0; box-shadow: var(--shadow); }
+  .item .remove:hover { color: var(--danger); }
+  .item .pos { position: absolute; top: 14px; left: 14px; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 7px; background: var(--primary); color: var(--on-primary); font: 500 12px/24px var(--font-mono); text-align: center; box-shadow: var(--shadow); }
+  .item .order { display: flex; gap: 2px; border-top: 1px solid var(--line); padding-top: 6px; }
+  .item .order button { flex: 1; height: 30px; border: 0; border-radius: 7px; background: transparent; color: var(--ink-2); display: grid; place-items: center; padding: 0; }
+  .item .order button:hover:not(:disabled) { background: var(--well); color: var(--ink); }
+  .item .order button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  .empty { border: 1.5px dashed var(--line-2); border-radius: 14px; padding: 44px 20px; text-align: center; color: var(--muted); background: var(--surface); display: grid; justify-items: center; gap: 6px; }
+  .empty b { font: 400 26px var(--font-serif); color: var(--ink); }
+
+  input[type="range"] { width: 160px; accent-color: var(--primary); }
+  .option .value { font: 400 12px var(--font-mono); color: var(--ink-2); min-width: 7ch; }
+  .option input[type="number"] { width: 72px; }
+
+  /* preview */
+  .preview { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; justify-content: center; max-width: 100%; }
+  .preview img { max-width: min(100%, 900px); max-height: calc(100dvh - 140px); object-fit: contain; border-radius: 4px; box-shadow: 0 18px 40px -12px rgba(0, 0, 0, 0.35); background: repeating-conic-gradient(#e5e5e5 0 25%, #fff 0 50%) 0 0 / 16px 16px; }
+  .preview dl { margin: 0; display: grid; gap: 10px; width: min(100%, 280px); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; font-size: 13px; }
+  .preview dl div { display: grid; gap: 2px; }
+  .preview dt { font: 500 10px/1 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .preview dd { margin: 0; word-break: break-word; }
+  .preview .warn dd { color: var(--danger); font-weight: 500; }
+  .preview .verdict { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+}

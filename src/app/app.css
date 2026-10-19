@@ -1,0 +1,20 @@
+.back { display: inline-flex; align-items: center; gap: 6px; font: 500 12px/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; padding: 6px 0; border-radius: 6px; }
+.back:hover { color: var(--ink); }
+.loading { color: var(--muted); font: 400 13px var(--font-mono); margin: 0; }
+/* No box of its own: the tool's sections stay direct items of the page grid and keep its spacing. */
+.tool-root { display: contents; }
+
+/* home: tool cards */
+.home-tools { display: grid; gap: 16px; }
+.section-label { font: 500 11px/1 var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.tool-cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.tool-cards > li { display: grid; }
+.tool-card { display: grid; gap: 6px; align-content: start; padding: 20px; text-decoration: none; color: inherit; transition: box-shadow 0.25s var(--ease), border-color 0.2s var(--ease); }
+a.tool-card:hover { box-shadow: var(--shadow-lg); border-color: var(--line-2); }
+.tool-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--well); color: var(--ink-2); display: grid; place-items: center; margin-bottom: 8px; }
+.tool-name { font: 400 26px/1.1 var(--font-serif); }
+.tool-desc { color: var(--muted); font-size: 14px; }
+.tool-open { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font: 500 12px/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; }
+.tool-card.soon { border: 1.5px dashed var(--line-2); border-radius: 14px; background: transparent; }
+.tool-card.soon .tool-icon { background: transparent; border: 1px solid var(--line); color: var(--muted); }
+.tool-card.soon .tool-name { color: var(--ink-2); }

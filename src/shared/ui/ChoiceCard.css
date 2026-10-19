@@ -1,0 +1,11 @@
+.choices { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.choice { position: relative; display: grid; align-content: start; gap: 2px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease); }
+.choice:hover { border-color: var(--line-2); }
+.choice:has(input[type="radio"]:checked) { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+.choice:has(input[type="radio"]:focus-visible) { outline: 2px solid var(--ink); outline-offset: 2px; }
+.choice label { cursor: pointer; }
+.choice label::before { content: ""; position: absolute; inset: 0; border-radius: inherit; } /* the whole card picks the option */
+.choice input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+.choice strong { font-weight: 500; font-size: 14px; }
+.choice small { color: var(--muted); font-size: 13px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.choice small :is(input, select) { position: relative; z-index: 1; }

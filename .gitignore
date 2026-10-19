@@ -1,0 +1,6 @@
+node_modules
+dist
+dev-dist
+*.log
+# Windows shortcut made by `npm run shortcut`; it points at this PC's paths
+*.lnk
