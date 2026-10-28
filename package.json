@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "description": "Private tools for PDFs and photos that run entirely in your browser. Files never leave the tab.",
   "author": "Yiguang Ma (https://github.com/YiguangM)",
+  "license": "MIT",
   "homepage": "https://github.com/YiguangM/Pocket-Tools#readme",
   "repository": {
     "type": "git",

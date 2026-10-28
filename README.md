@@ -189,6 +189,10 @@ Built with React, Vite, [pdf.js](https://github.com/mozilla/pdf.js), [pdf-lib](h
 
 Demo photos: NASA (public domain).
 
+## License
+
+[MIT](LICENSE) © Yiguang Ma. The bundled AI models keep their own licenses, listed in [`public/licenses/`](public/licenses/).
+
 ---
 
 <div align="center">
