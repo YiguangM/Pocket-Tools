@@ -2,7 +2,13 @@
   "name": "pocket-tools",
   "private": true,
   "version": "0.1.0",
-  "description": "Small, private, in-browser utilities. Files never leave the tab.",
+  "description": "Private tools for PDFs and photos that run entirely in your browser. Files never leave the tab.",
+  "author": "Yiguang Ma (https://github.com/YiguangM)",
+  "homepage": "https://github.com/YiguangM/Pocket-Tools#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YiguangM/Pocket-Tools.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

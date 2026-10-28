@@ -18,3 +18,5 @@ a.tool-card:hover { box-shadow: var(--shadow-lg); border-color: var(--line-2); }
 .tool-card.soon { border: 1.5px dashed var(--line-2); border-radius: 14px; background: transparent; }
 .tool-card.soon .tool-icon { background: transparent; border: 1px solid var(--line); color: var(--muted); }
 .tool-card.soon .tool-name { color: var(--ink-2); }
+.site-foot .credit { display: block; margin-top: 10px; font: 500 12px var(--font-mono); letter-spacing: 0.04em; color: var(--ink-2); }
+.site-foot .credit a { color: var(--ink); text-underline-offset: 3px; }

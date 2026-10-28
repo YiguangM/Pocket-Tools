@@ -56,6 +56,16 @@ export function Home() {
       <p className="site-foot">
         Everything runs in your browser. After your first visit the app also works with no connection. Nothing you add is uploaded,
         stored or tracked.
+        <span className="credit">
+          Made by{" "}
+          <a href="https://github.com/YiguangM" target="_blank" rel="noopener noreferrer">
+            Yiguang Ma
+          </a>
+          {" · "}
+          <a href="https://github.com/YiguangM/Pocket-Tools" target="_blank" rel="noopener noreferrer">
+            Source on GitHub
+          </a>
+        </span>
       </p>
     </main>
   );
